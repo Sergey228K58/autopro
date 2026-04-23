@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Чат клиент–менеджер</h2>
+
+<form method="POST" class="form">
+    <label>Сообщение:</label>
+    <input type="text" name="message" required>
+    <button type="submit">Отправить</button>
+</form>
+
+<h3>Сообщения</h3>
+<ul>
+    {% for m in messages %}
+        <li>
+            [{{ m.created_at }}] {{ m.sender }}:
+            {{ m.message }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

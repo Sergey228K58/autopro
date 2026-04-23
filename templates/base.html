@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoPro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <h1>AutoPro</h1>
+    <nav>
+        {% if session.get('user') %}
+            <a href="{{ url_for('index') }}">Главная</a>
+            {% if session.user.role in ['manager', 'admin'] %}
+                <a href="{{ url_for('orders_list') }}">Заказы авто</a>
+            {% endif %}
+            {% if session.user.role in ['master', 'manager', 'admin'] %}
+                <a href="{{ url_for('service_list') }}">Автосервис</a>
+            {% endif %}
+            {% if session.user.role in ['storekeeper', 'master', 'manager', 'admin'] %}
+                <a href="{{ url_for('parts_list') }}">Склад</a>
+            {% endif %}
+            {% if session.user.role in ['accountant', 'admin'] %}
+                <a href="{{ url_for('finance_list') }}">Финансы</a>
+            {% endif %}
+            {% if session.user.role in ['client', 'admin'] %}
+                <a href="{{ url_for('client_portal') }}">Клиентский портал</a>
+            {% endif %}
+            <a href="{{ url_for('chat') }}">Чат</a>
+            <span class="user-info">
+                {{ session.user.username }} ({{ session.user.role }})
+            </span>
+            <a href="{{ url_for('logout') }}">Выйти</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Вход</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>AutoPro &copy; 2026</p>
+</footer>
+</body>
+</html>

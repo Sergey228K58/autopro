@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Склад запчастей</h2>
+
+<a href="{{ url_for('parts_receive') }}" class="btn">Приёмка товара</a>
+
+<form method="POST" action="{{ url_for('parts_inventory') }}" style="margin-top:10px;">
+    <button type="submit">Инвентаризация (Excel)</button>
+</form>
+
+<h3>Текущие остатки</h3>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Артикул</th>
+        <th>Категория</th>
+        <th>Поставщик</th>
+        <th>Количество</th>
+        <th>Мин. остаток</th>
+        <th>Цена</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in parts %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.article }}</td>
+            <td>{{ p.category }}</td>
+            <td>{{ p.supplier }}</td>
+            <td>{{ p.qty }}</td>
+            <td>{{ p.min_qty }}</td>
+            <td>{{ p.price }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h3>Позиции с минимальным остатком</h3>
+<ul>
+    {% for p in low_parts %}
+        <li>{{ p.name }} ({{ p.article }}) — остаток: {{ p.qty }}, минимум: {{ p.min_qty }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

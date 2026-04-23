@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Финансовый модуль</h2>
+
+<h3>Добавить операцию</h3>
+<form method="POST" action="{{ url_for('finance_add') }}" class="form">
+    <label>Тип (доход/расход):</label>
+    <input type="text" name="type" required>
+
+    <label>Категория:</label>
+    <input type="text" name="category" required>
+
+    <label>Сумма:</label>
+    <input type="number" step="0.01" name="amount" required>
+
+    <label>ID связанного заказа (если есть):</label>
+    <input type="text" name="related_order_id">
+
+    <button type="submit">Добавить</button>
+</form>
+
+<h3>Операции</h3>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Тип</th>
+        <th>Категория</th>
+        <th>Сумма</th>
+        <th>Заказ</th>
+        <th>Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for op in operations %}
+        <tr>
+            <td>{{ op.id }}</td>
+            <td>{{ op.type }}</td>
+            <td>{{ op.category }}</td>
+            <td>{{ op.amount }}</td>
+            <td>{{ op.related_order_id }}</td>
+            <td>{{ op.created_at }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('finance_report') }}" class="btn">Скачать отчёт (Excel)</a>
+{% endblock %}

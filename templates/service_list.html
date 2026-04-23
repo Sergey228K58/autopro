@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Заказ-наряды автосервиса</h2>
+
+<a href="{{ url_for('service_create') }}" class="btn">Создать заказ-наряд</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Клиент</th>
+        <th>VIN</th>
+        <th>Работы</th>
+        <th>Часы</th>
+        <th>Стоимость работ</th>
+        <th>Стоимость запчастей</th>
+        <th>Итого</th>
+        <th>Статус</th>
+        <th>Мастер</th>
+        <th>Завершено</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for s in service_orders %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.client_username }}</td>
+            <td>{{ s.vin }}</td>
+            <td>{{ s.works }}</td>
+            <td>{{ s.hours }}</td>
+            <td>{{ s.work_cost }}</td>
+            <td>{{ s.parts_cost }}</td>
+            <td>{{ s.total_cost }}</td>
+            <td>{{ s.status }}</td>
+            <td>{{ s.master }}</td>
+            <td>{{ s.finished_at }}</td>
+            <td>
+                {% if s.status != 'Завершён' %}
+                <form method="POST" action="{{ url_for('service_close', service_id=s.id) }}">
+                    <button type="submit">Закрыть</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

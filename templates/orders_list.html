@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Заказы автомобилей</h2>
+
+<a href="{{ url_for('order_create') }}" class="btn">Создать заказ</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Клиент</th>
+        <th>Логин клиента</th>
+        <th>Марка</th>
+        <th>Модель</th>
+        <th>Год</th>
+        <th>Комплектация</th>
+        <th>Цвет</th>
+        <th>Цена</th>
+        <th>Статус</th>
+        <th>Изменить статус</th>
+        <th>Договор</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for o in orders %}
+        <tr>
+            <td>{{ o.id }}</td>
+            <td>{{ o.client_name }}</td>
+            <td>{{ o.client_username }}</td>
+            <td>{{ o.car_brand }}</td>
+            <td>{{ o.car_model }}</td>
+            <td>{{ o.year }}</td>
+            <td>{{ o.config }}</td>
+            <td>{{ o.color }}</td>
+            <td>{{ o.price }}</td>
+            <td>{{ o.status }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('order_update_status', order_id=o.id) }}">
+                    <select name="status">
+                        {% for s in statuses %}
+                            <option value="{{ s }}" {% if s == o.status %}selected{% endif %}>{{ s }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">OK</button>
+                </form>
+            </td>
+            <td>
+                <a href="{{ url_for('order_contract', order_id=o.id) }}">Скачать</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Приёмка товара</h2>
+
+<form method="POST" class="form">
+    <label>Название:</label>
+    <input type="text" name="name" required>
+
+    <label>Артикул:</label>
+    <input type="text" name="article" required>
+
+    <label>Категория:</label>
+    <input type="text" name="category">
+
+    <label>Поставщик:</label>
+    <input type="text" name="supplier">
+
+    <label>Количество:</label>
+    <input type="number" name="qty" required>
+
+    <label>Минимальный остаток:</label>
+    <input type="number" name="min_qty" required>
+
+    <label>Цена:</label>
+    <input type="number" step="0.01" name="price" required>
+
+    <button type="submit">Сохранить</button>
+</form>
+{% endblock %}

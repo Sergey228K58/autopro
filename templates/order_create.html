@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Создание заказа автомобиля</h2>
+
+<form method="POST" class="form">
+    <label>Имя клиента:</label>
+    <input type="text" name="client_name" required>
+
+    <label>Логин клиента:</label>
+    <input type="text" name="client_username" required>
+
+    <label>Марка:</label>
+    <input type="text" name="car_brand" required>
+
+    <label>Модель:</label>
+    <input type="text" name="car_model" required>
+
+    <label>Год выпуска:</label>
+    <input type="number" name="year" required>
+
+    <label>Комплектация:</label>
+    <input type="text" name="config">
+
+    <label>Цвет:</label>
+    <input type="text" name="color">
+
+    <label>Ориентировочная цена:</label>
+    <input type="number" name="price" step="0.01">
+
+    <button type="submit">Создать</button>
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Создание заказ-наряда</h2>
+
+<form method="POST" class="form">
+    <label>Логин клиента:</label>
+    <input type="text" name="client_username" required>
+
+    <label>VIN:</label>
+    <input type="text" name="vin" required>
+
+    <label>Перечень работ:</label>
+    <textarea name="works" required></textarea>
+
+    <label>Нормо-часы:</label>
+    <input type="number" step="0.1" name="hours" required>
+
+    <label>Стоимость работ:</label>
+    <input type="number" step="0.01" name="work_cost" required>
+
+    <label>Стоимость запчастей:</label>
+    <input type="number" step="0.01" name="parts_cost" required>
+
+    <button type="submit">Создать</button>
+</form>
+{% endblock %}
