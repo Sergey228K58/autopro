@@ -40,6 +40,6 @@ python app.py
 
 ## CI/CD Status
 
-![Tests](https://github.com/Sergey228K58/autopro/actions/workflows/tests.yml/badge.svg)
-![Build](https://github.com/Sergey228K58/autopro/actions/workflows/build.yml/badge.svg)
-![Deploy](https://github.com/Sergey228K58/autopro/actions/workflows/deploy.yml/badge.svg)
+[Tests](https://github.com/Sergey228K58/autopro/actions/workflows/tests.yml/badge.svg)
+[Build](https://github.com/Sergey228K58/autopro/actions/workflows/build.yml/badge.svg)
+[Deploy](https://github.com/Sergey228K58/autopro/actions/workflows/deploy.yml/badge.svg)
